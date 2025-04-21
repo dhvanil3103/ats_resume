@@ -13,6 +13,6 @@ class Settings(BaseSettings):
     GEMINI_MODEL: str = "gemini-2.0-flash"
     
     # CORS - Allow requests from the React development server
-    BACKEND_CORS_ORIGINS: list = ["http://localhost:3000", "http://127.0.0.1:3000", "https://ats-resume-ebon.vercel.app/"]
+    BACKEND_CORS_ORIGINS: list = ["*"]
 
 settings = Settings()
