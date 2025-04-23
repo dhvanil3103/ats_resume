@@ -8,7 +8,7 @@ import {
 
 // Create axios instance
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/api',
+  baseURL: process.env.REACT_APP_API_URL || 'https://ats-resume-ihvx.onrender.com',
   headers: {
     'Content-Type': 'multipart/form-data',
   },
