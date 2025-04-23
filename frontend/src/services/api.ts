@@ -29,7 +29,7 @@ export const getResumeSummary = async (
     formData.append('resume_file', resumeFile);
   }
   
-  const response = await api.post<SummaryResponse>('/analysis/summary', formData);
+  const response = await api.post<SummaryResponse>('analysis/summary', formData);
   return response.data;
 };
 
@@ -50,7 +50,7 @@ export const getSimilarityScore = async (
     formData.append('resume_file', resumeFile);
   }
   
-  const response = await api.post<SimilarityResponse>('/analysis/similarity', formData);
+  const response = await api.post<SimilarityResponse>('analysis/similarity', formData);
   
   // Ensure similarityScore is a string
   if (typeof response.data.similarityScore !== 'string') {
@@ -77,7 +77,7 @@ export const getMissingKeywords = async (
     formData.append('resume_file', resumeFile);
   }
   
-  const response = await api.post<KeywordsResponse>('/analysis/keywords', formData);
+  const response = await api.post<KeywordsResponse>('analysis/keywords', formData);
   return response.data;
 };
 
@@ -131,7 +131,7 @@ export const generateCoverLetter = async (
     }
   }
   
-  const response = await api.post<CoverLetterResponse>('/generate/cover-letter', formData);
+  const response = await api.post<CoverLetterResponse>('generate/cover-letter', formData);
   return response.data;
 };
 
@@ -144,7 +144,7 @@ export const downloadCoverLetter = async (
   formData.append('cover_letter', coverLetter);
   formData.append('full_name', fullName);
   
-  const response = await api.post('/generate/download-cover-letter', formData, {
+  const response = await api.post('generate/download-cover-letter', formData, {
     responseType: 'blob',
   });
   
@@ -161,7 +161,7 @@ export const extractTextFromFile = async (
     console.log("Uploading file:", file.name, "Size:", file.size, "Type:", file.type);
     
     try {
-      const response = await api.post<{ filename: string; content: string }>('/documents/upload', formData);
+      const response = await api.post<{ filename: string; content: string }>('documents/upload', formData);
       console.log("Upload response:", response.data);
       return { content: response.data.content };
     } catch (error) {
