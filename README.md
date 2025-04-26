@@ -1,140 +1,149 @@
-# Resume Optimizer & Cover Letter Generator
-# Resume Optimizer & Cover Letter Generator
+# ResumeAI - Resume Optimizer & ATS Scanner
 
-An AI-powered full-stack application that helps job seekers optimize their resumes for specific job descriptions and generate tailored cover letters.
+## About
 
-## Features
+ResumeAI is a powerful tool designed to help job seekers optimize their resumes for Applicant Tracking Systems (ATS) and generate tailored cover letters. By analyzing your resume against specific job descriptions, ResumeAI provides actionable insights to increase your chances of landing interviews.
 
-- Upload or paste your resume and job description
-- Get a resume summary and analysis
-- View similarity score between your resume and job description
-- Identify missing keywords and get suggestions for incorporating them
-- Generate professional cover letters tailored to your experience and the job
-- Download the cover letter as a text file
+## 🚀 Features
 
-## Tech Stack
+- **Resume Analysis**: Get a concise summary of your resume's strengths and professional profile
+- **ATS Compatibility Check**: Ensure your resume passes through ATS filters with a similarity score
+- **Keyword Optimization**: Identify missing keywords from job descriptions and get placement suggestions
+- **Cover Letter Generation**: Create customized cover letters based on your resume and job descriptions
+- **Mobile Responsive**: Fully functional on all devices and screen sizes
+
+## 🛠️ Technology Stack
 
 ### Frontend
 - React with TypeScript
-- Chakra UI for components and styling
-- React Query for API calls and data fetching
-- React Dropzone for file uploads
+- Chakra UI for responsive design
+- React Query for state management
 - Framer Motion for animations
 
 ### Backend
-- FastAPI with Python 3.11+
-- PyPDF2 for PDF text extraction
-- Google Gemini AI for analysis and generation
+- FastAPI (Python)
+- Google Gemini AI for content analysis and generation
+- PyPDF2 for document processing
 
-### Database
-- PostgreSQL with SQLAlchemy ORM
+## 📋 Prerequisites
 
-### Deployment
-- Docker containerization
-- Nginx for serving the frontend
+- Node.js (v16+)
+- Python (v3.9+)
+- Google API Key (Gemini API)
 
-## Getting Started
+## ⚙️ Installation
 
-### Prerequisites
-
-- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
-- [Node.js](https://nodejs.org/) (for local development)
-- [Python 3.11](https://www.python.org/downloads/) (for local development)
-
-### Running with Docker
+### Backend Setup
 
 1. Clone the repository
-   ```
+   ```bash
    git clone https://github.com/yourusername/resume-optimizer.git
-   cd resume-optimizer
-   ```
-
-2. Create a `.env` file (optional - you can use the provided defaults)
-   ```
-   cp .env.example .env
-   ```
-
-3. Start the application using Docker Compose
-   ```
-   docker-compose up -d
-   ```
-
-4. Access the application at http://localhost:3000
-
-### Local Development
-
-#### Backend
-
-1. Navigate to the backend directory
-   ```
-   cd backend
+   cd resume-optimizer/backend
    ```
 
 2. Create a virtual environment
-   ```
+   ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. Install dependencies
-   ```
+   ```bash
    pip install -r requirements.txt
    ```
 
-4. Run the development server
+4. Create a `.env` file in the backend directory with your API key
    ```
+   GEMINI_API_KEY=your_api_key_here
+   ```
+
+5. Start the backend server
+   ```bash
    uvicorn app.main:app --reload
    ```
 
-#### Frontend
+### Frontend Setup
 
 1. Navigate to the frontend directory
-   ```
-   cd frontend
+   ```bash
+   cd ../frontend
    ```
 
 2. Install dependencies
-   ```
+   ```bash
    npm install
    ```
 
-3. Start the development server
+3. Create a `.env` file with your backend URL
    ```
+   REACT_APP_API_URL=http://localhost:8000/api
+   ```
+
+4. Start the development server
+   ```bash
    npm start
    ```
 
-## Project Structure
+## 🚀 Deployment
+
+The application is configured for easy deployment on platforms like Render:
+
+1. Frontend: Deploy as a static site
+2. Backend: Deploy as a web service
+
+## 🔧 Configuration
+
+### Environment Variables
+
+#### Backend
+- `GEMINI_API_KEY`: Your Google Gemini API key
+- `GEMINI_MODEL`: The model to use (default: "gemini-2.0-flash")
+
+#### Frontend
+- `REACT_APP_API_URL`: URL of your backend API
+
+## 📁 Project Structure
 
 ```
-project_root/
-├── backend/               # FastAPI application
+resume-optimizer/
+├── backend/
 │   ├── app/
-│   │   ├── main.py        # Main application entry point
-│   │   ├── api/           # API routes and endpoints
-│   │   ├── core/          # Configuration and settings
-│   │   ├── db/            # Database models and session
-│   │   ├── schemas/       # Pydantic models for validation
-│   │   └── services/      # Business logic services
-│   ├── requirements.txt   # Python dependencies
-│   └── Dockerfile         # Backend Docker configuration
-├── frontend/              # React application
-│   ├── public/            # Static assets
+│   │   ├── api/
+│   │   ├── core/
+│   │   └── services/
+│   └── requirements.txt
+├── frontend/
+│   ├── public/
 │   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── services/      # API service functions
-│   │   └── styles/        # Global styles and theme
-│   ├── package.json       # Node.js dependencies
-│   └── Dockerfile         # Frontend Docker configuration
-├── docker-compose.yml     # Docker Compose configuration
-└── .env                   # Environment variables
+│   │   ├── components/
+│   │   ├── services/
+│   │   └── styles/
+│   └── package.json
+└── README.md
 ```
 
-## License
+## 👥 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
+## 🙏 Acknowledgements
 
-- Google Generative AI for powering the AI analysis and generation
-- [Chakra UI](https://chakra-ui.com/) for the component library
-- [FastAPI](https://fastapi.tiangolo.com/) for the backend framework
+- [Chakra UI](https://chakra-ui.com/)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Google Gemini AI](https://ai.google.dev/)
+- [React Query](https://tanstack.com/query/latest)
+- [Framer Motion](https://www.framer.com/motion/)
+
+---
+
+Made with ❤️ by Dhvanil
