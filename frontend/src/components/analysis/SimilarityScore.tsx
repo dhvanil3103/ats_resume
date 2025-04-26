@@ -10,7 +10,6 @@ import {
   Skeleton,
   CircularProgress,
   CircularProgressLabel,
-  HStack,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiPercent } from 'react-icons/fi';
@@ -72,6 +71,7 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
       boxShadow="md"
       position="relative"
       overflow="hidden"
+      height="100%"
       _before={{
         content: '""',
         position: 'absolute',
@@ -82,7 +82,7 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
         bg: accentColor,
       }}
     >
-      <VStack spacing={{ base: 4, md: 6 }} align="stretch">
+      <VStack spacing={{ base: 4, md: 6 }} align="stretch" height="100%">
         <Flex align="center">
           <Icon as={FiPercent} boxSize={{ base: 5, md: 6 }} color={accentColor} />
           <Heading size={{ base: "sm", md: "md" }} ml={2}>
@@ -92,7 +92,7 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
         
         {isLoading ? (
           <VStack spacing={6} align="center">
-            <Skeleton height="150px" width="150px" borderRadius="full" />
+            <Skeleton height="120px" width="120px" borderRadius="full" />
             <VStack spacing={3} align="stretch" width="100%">
               <Skeleton height="20px" width="100%" />
               <Skeleton height="20px" width="95%" />
@@ -100,29 +100,37 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
             </VStack>
           </VStack>
         ) : data ? (
-          <Flex 
-            direction={{ base: "column", sm: "row" }}
-            align={{ base: "center", sm: "flex-start" }}
-            gap={{ base: 4, md: 6 }}
-          >
-            <Box position="relative" w={{ base: "120px", md: "150px" }} h={{ base: "120px", md: "150px" }} mx={{ base: "auto", sm: 0 }}>
-              <CircularProgress
-                value={scoreValue}
-                color={scoreColor}
-                size={{ base: "120px", md: "150px" }}
-                thickness="10px"
-              >
-                <CircularProgressLabel fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
-                  {data.similarityScore}
-                </CircularProgressLabel>
-              </CircularProgress>
-            </Box>
+          <VStack spacing={5} align="stretch" flex="1">
+            <Flex justify="center" mb={4}>
+              <Box position="relative">
+                <CircularProgress
+                  value={scoreValue}
+                  color={scoreColor}
+                  size={{ base: "120px", md: "150px" }}
+                  thickness="10px"
+                >
+                  <CircularProgressLabel fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
+                    {data.similarityScore}
+                  </CircularProgressLabel>
+                </CircularProgress>
+              </Box>
+            </Flex>
             
-            <VStack align={{ base: "center", sm: "start" }} spacing={3} flex="1" pt={{ base: 2, sm: 0 }}>
-              <Heading size="sm" textAlign={{ base: "center", sm: "left" }}>Resume-Job Match</Heading>
-              <Text textAlign={{ base: "center", sm: "left" }}>{data.similarityExplanation}</Text>
-            </VStack>
-          </Flex>
+            <Box>
+              <Heading 
+                size="sm" 
+                mb={2}
+              >
+                Resume-Job Match
+              </Heading>
+              <Text 
+                fontSize={{ base: "sm", md: "md" }}
+                lineHeight="1.5"
+              >
+                {data.similarityExplanation}
+              </Text>
+            </Box>
+          </VStack>
         ) : (
           <Text>No similarity data available</Text>
         )}

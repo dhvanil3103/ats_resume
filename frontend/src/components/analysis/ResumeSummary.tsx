@@ -32,7 +32,7 @@ const ResumeSummary: React.FC<ResumeSummaryProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      p={6}
+      p={{ base: 4, md: 6 }}
       bg={bgColor}
       borderRadius="lg"
       border="1px"
@@ -40,6 +40,7 @@ const ResumeSummary: React.FC<ResumeSummaryProps> = ({
       boxShadow="md"
       position="relative"
       overflow="hidden"
+      height="100%"
       _before={{
         content: '""',
         position: 'absolute',
@@ -50,10 +51,10 @@ const ResumeSummary: React.FC<ResumeSummaryProps> = ({
         bg: accentColor,
       }}
     >
-      <VStack spacing={4} align="stretch">
+      <VStack spacing={4} align="stretch" height="100%">
         <Flex align="center">
-          <Icon as={FiFileText} boxSize={6} color={accentColor} />
-          <Heading size="md" ml={2}>
+          <Icon as={FiFileText} boxSize={{ base: 5, md: 6 }} color={accentColor} />
+          <Heading size={{ base: "sm", md: "md" }} ml={2}>
             Resume Summary
           </Heading>
         </Flex>
@@ -65,7 +66,9 @@ const ResumeSummary: React.FC<ResumeSummaryProps> = ({
             <Skeleton height="20px" width="90%" />
           </VStack>
         ) : (
-          <Text>{summary}</Text>
+          <Text fontSize={{ base: "sm", md: "md" }} flex="1">
+            {summary}
+          </Text>
         )}
       </VStack>
     </MotionBox>

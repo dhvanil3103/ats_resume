@@ -55,7 +55,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
                 bgGradient="linear(to-r, brand.500, accent.500)"
                 bgClip="text"
               >
-                Resume Optimizer
+                ATSify
               </Heading>
               <Text color="gray.500" display={{ base: 'none', md: 'block' }}>
                 AI-powered job application assistant
