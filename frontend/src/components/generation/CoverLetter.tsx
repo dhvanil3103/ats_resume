@@ -100,7 +100,7 @@ const CoverLetter: React.FC<CoverLetterProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      p={6}
+      p={{ base: 4, md: 6 }}
       bg={bgColor}
       borderRadius="lg"
       border="1px"
@@ -118,23 +118,29 @@ const CoverLetter: React.FC<CoverLetterProps> = ({
         bg: accentColor,
       }}
     >
-      <VStack spacing={6} align="stretch">
-        <Flex align="center" justify="space-between">
+      <VStack spacing={{ base: 4, md: 6 }} align="stretch">
+        <Flex 
+          align="center" 
+          justify="space-between" 
+          direction={{ base: "column", sm: "row" }}
+          gap={{ base: 2, sm: 0 }}
+        >
           <Flex align="center">
-            <Icon as={FiFileText} boxSize={6} color={accentColor} />
-            <Heading size="md" ml={2}>
+            <Icon as={FiFileText} boxSize={{ base: 5, md: 6 }} color={accentColor} />
+            <Heading size={{ base: "sm", md: "md" }} ml={2}>
               Cover Letter
             </Heading>
           </Flex>
           
           {!isLoading && coverLetter && (
-            <HStack>
+            <HStack spacing={2} width={{ base: "100%", sm: "auto" }}>
               <Button
                 size="sm"
                 leftIcon={<Icon as={FiClipboard} />}
                 onClick={handleCopyToClipboard}
                 variant="outline"
                 colorScheme="brand"
+                flex={{ base: 1, sm: "auto" }}
               >
                 Copy
               </Button>
@@ -143,6 +149,7 @@ const CoverLetter: React.FC<CoverLetterProps> = ({
                 leftIcon={<Icon as={FiDownload} />}
                 onClick={handleDownload}
                 colorScheme="brand"
+                flex={{ base: 1, sm: "auto" }}
               >
                 Download
               </Button>
@@ -170,11 +177,13 @@ const CoverLetter: React.FC<CoverLetterProps> = ({
         ) : coverLetter ? (
           <Box
             bg={paperBgColor}
-            p={6}
+            p={{ base: 3, md: 6 }}
             borderRadius="md"
             boxShadow={paperBoxShadow}
             whiteSpace="pre-line"
             fontFamily="'Times New Roman', serif"
+            fontSize={{ base: "sm", md: "md" }}
+            overflowX="auto"
           >
             {coverLetter}
           </Box>

@@ -41,12 +41,17 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
         borderBottom="1px"
         borderColor={borderColor}
       >
-        <Container maxW="container.xl" py={4}>
-          <Flex justify="space-between" align="center">
-            <HStack spacing={4}>
+        <Container maxW="container.xl" py={{ base: 2, md: 4 }}>
+          <Flex 
+            justify="space-between" 
+            align="center"
+            direction={{ base: "column", sm: "row" }}
+            gap={{ base: 2, sm: 0 }}
+          >
+            <HStack spacing={{ base: 2, md: 4 }}>
               <Heading
                 as="h1"
-                size="md"
+                size={{ base: "sm", md: "md" }}
                 bgGradient="linear(to-r, brand.500, accent.500)"
                 bgClip="text"
               >
@@ -57,18 +62,26 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
               </Text>
             </HStack>
 
-            <HStack spacing={4}>
+            <HStack spacing={{ base: 2, md: 4 }}>
               <Link
-                href="https://github.com/yourusername/resume-optimizer"
+                href="https://github.com/dhvanil3103/ats_resume/tree/main"
                 isExternal
               >
                 <Button
                   leftIcon={<Icon as={FiGithub} />}
                   variant="ghost"
                   size="sm"
+                  display={{ base: 'none', sm: 'flex' }}
                 >
                   GitHub
                 </Button>
+                <IconButton
+                  aria-label="GitHub"
+                  icon={<FiGithub />}
+                  size="sm"
+                  variant="ghost"
+                  display={{ base: 'flex', sm: 'none' }}
+                />
               </Link>
 
               <IconButton
@@ -101,7 +114,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
       {/* Footer */}
       <Box
         as="footer"
-        py={6}
+        py={{ base: 4, md: 6 }}
         borderTop="1px"
         borderColor={borderColor}
         bg={headerBgColor}
@@ -110,14 +123,14 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children }) => {
           <Flex
             direction={{ base: 'column', md: 'row' }}
             justify="space-between"
-            align={{ base: 'center', md: 'flex-start' }}
-            textAlign={{ base: 'center', md: 'left' }}
+            align="center"
+            textAlign="center"
+            gap={2}
           >
             <Text fontSize="sm" color="gray.500">
               © {new Date().getFullYear()} Resume Optimizer. All rights reserved.
             </Text>
-            <Text fontSize="sm" color="gray.500" mt={{ base: 2, md: 0 }}>
-              Powered by AI • Made with ❤️
+            <Text fontSize="sm" color="gray.500">
             </Text>
           </Flex>
         </Container>

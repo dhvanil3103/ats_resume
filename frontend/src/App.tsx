@@ -321,44 +321,63 @@ const App = () => {
         }
       />
       
-      <Container maxW="container.lg" py={8}>
-        <VStack spacing={8} align="stretch">
+      <Container maxW="container.md" py={{ base: 3, md: 8 }} px={{ base: 3, md: 6 }}>
+        <VStack spacing={{ base: 4, md: 8 }} align="stretch">
           {/* Hero Section */}
-          <VStack spacing={2} textAlign="center" mb={8}>
+          <VStack spacing={{ base: 1, md: 2 }} textAlign="center" mb={{ base: 3, md: 6 }}>
             <Heading 
               as="h1" 
-              size="2xl"
+              size={{ base: "xl", md: "2xl" }}
               bgGradient="linear(to-r, brand.400, brand.600)"
               bgClip="text"
+              lineHeight="1.2"
+              fontSize={{ base: "28px", md: "36px" }}
+              px={2}
+              wordBreak="break-word"
             >
               Resume Optimizer & Cover Letter Generator
             </Heading>
-            <Text fontSize="xl" color="gray.500">
+            <Text fontSize={{ base: "sm", md: "lg" }} color="gray.500" px={2}>
               Optimize your resume for ATS systems and generate tailored cover letters
             </Text>
           </VStack>
           
           {/* Stepper */}
-          <Stepper index={activeStep} colorScheme="brand" mb={8}>
-            {steps.map((step, index) => (
-              <Step key={index}>
-                <StepIndicator>
-                  <StepStatus
-                    complete={<StepIcon />}
-                    incomplete={<StepNumber />}
-                    active={<StepNumber />}
-                  />
-                </StepIndicator>
-                
-                <Box flexShrink={0}>
-                  <StepTitle>{step.title}</StepTitle>
-                  <StepDescription>{step.description}</StepDescription>
-                </Box>
-                
-                <StepSeparator />
-              </Step>
-            ))}
-          </Stepper>
+          <Box width="100%" overflow="hidden" position="relative" pb={2}>
+            <Box overflowX="auto" width="100%" pb={2} mx={-2} px={2}>
+              <Stepper 
+                index={activeStep} 
+                colorScheme="brand" 
+                mb={{ base: 4, md: 8 }} 
+                size={{ base: "sm", md: "md" }}
+                minWidth="400px"
+              >
+                {steps.map((step, index) => (
+                  <Step key={index}>
+                    <StepIndicator>
+                      <StepStatus
+                        complete={<StepIcon />}
+                        incomplete={<StepNumber />}
+                        active={<StepNumber />}
+                      />
+                    </StepIndicator>
+                    
+                    <Box flexShrink={0}>
+                      <StepTitle fontSize={{ base: "xs", md: "sm" }}>{step.title}</StepTitle>
+                      <StepDescription 
+                        display={{ base: "none", md: "block" }}
+                        fontSize={{ base: "xs", md: "xs" }}
+                      >
+                        {step.description}
+                      </StepDescription>
+                    </Box>
+                    
+                    <StepSeparator />
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
+          </Box>
           
           {/* Main Content */}
           <Box
@@ -369,6 +388,7 @@ const App = () => {
             animate="center"
             exit="exit"
             transition={{ type: "spring", stiffness: 300, damping: 30 } as any}
+            width="100%"
           >
             <AnimatePresence mode="wait" custom={direction}>
               {currentStep === WizardStep.UPLOAD_RESUME && (
@@ -424,7 +444,7 @@ const App = () => {
                 >
                   <VStack spacing={8} align="stretch">
                     <Box
-                      p={6}
+                      p={{ base: 4, md: 6 }}
                       bg={cardBgColor}
                       borderRadius="lg"
                       border="1px"
@@ -432,16 +452,17 @@ const App = () => {
                       boxShadow="md"
                     >
                       <VStack spacing={4} align="stretch">
-                        <Heading size="lg">Analysis Results</Heading>
-                        <Text>
+                        <Heading size={{ base: "md", md: "lg" }}>Analysis Results</Heading>
+                        <Text fontSize={{ base: "sm", md: "md" }}>
                           Here's your resume analysis and cover letter. You can download or copy the cover letter to use in your job application.
                         </Text>
                         
-                        <HStack justify="space-between">
+                        <HStack spacing={3} justify="space-between" flexWrap="wrap" gap={2}>
                           <Button
                             colorScheme="brand"
                             variant="outline"
                             onClick={handleBack}
+                            size={{ base: "sm", md: "md" }}
                           >
                             Back
                           </Button>
@@ -449,6 +470,7 @@ const App = () => {
                             colorScheme="brand"
                             variant="ghost"
                             onClick={handleRestart}
+                            size={{ base: "sm", md: "md" }}
                           >
                             Start Over
                           </Button>
@@ -457,8 +479,8 @@ const App = () => {
                     </Box>
                     
                     <Grid
-                      templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }}
-                      gap={6}
+                      templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
+                      gap={{ base: 4, md: 6 }}
                     >
                       <GridItem>
                         <ResumeSummary 
@@ -472,13 +494,13 @@ const App = () => {
                         />
                       </GridItem>
                       
-                      <GridItem colSpan={{ base: 1, lg: 2 }}>
+                      <GridItem colSpan={{ base: 1, md: 2 }}>
                         <MissingKeywords 
                           data={results.keywords} 
                         />
                       </GridItem>
                       
-                      <GridItem colSpan={{ base: 1, lg: 2 }}>
+                      <GridItem colSpan={{ base: 1, md: 2 }}>
                         <CoverLetter 
                           coverLetter={results.coverLetter || ''} 
                           fullName={personalInfoForm.fullName}

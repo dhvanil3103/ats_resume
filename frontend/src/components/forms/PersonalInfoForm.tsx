@@ -77,7 +77,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      p={6}
+      p={{ base: 4, md: 6 }}
       bg={bgColor}
       borderRadius="lg"
       border="1px"
@@ -85,17 +85,17 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
       boxShadow="md"
       width="100%"
     >
-      <VStack spacing={8} align="stretch">
+      <VStack spacing={{ base: 5, md: 8 }} align="stretch">
         {/* Personal Information Section */}
-        <VStack spacing={4} align="stretch">
-          <Heading size="md">Your Information</Heading>
-          <Text fontSize="sm" color="gray.500">
+        <VStack spacing={{ base: 2, md: 4 }} align="stretch">
+          <Heading size={{ base: "sm", md: "md" }}>Your Information</Heading>
+          <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
             This information will be used in your cover letter.
           </Text>
           
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+          <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={{ base: 3, md: 4 }}>
             <FormControl isRequired isInvalid={!!errors.fullName}>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Full Name</FormLabel>
               <Input
                 placeholder="John Doe"
                 value={personalInfo.fullName}
@@ -112,6 +112,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     }));
                   }
                 }}
+                fontSize={{ base: "sm", md: "md" }}
               />
               {errors.fullName && (
                 <FormErrorMessage>{errors.fullName}</FormErrorMessage>
@@ -119,7 +120,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
             </FormControl>
             
             <FormControl>
-              <FormLabel>Email</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Email</FormLabel>
               <Input
                 type="email"
                 placeholder="john.doe@example.com"
@@ -130,11 +131,12 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     email: e.target.value,
                   })
                 }
+                fontSize={{ base: "sm", md: "md" }}
               />
             </FormControl>
             
             <FormControl>
-              <FormLabel>Phone</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Phone</FormLabel>
               <Input
                 placeholder="(123) 456-7890"
                 value={personalInfo.phone}
@@ -144,11 +146,12 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     phone: e.target.value,
                   })
                 }
+                fontSize={{ base: "sm", md: "md" }}
               />
             </FormControl>
             
             <FormControl>
-              <FormLabel>Address</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Address</FormLabel>
               <Input
                 placeholder="123 Main St, City, State, ZIP"
                 value={personalInfo.address}
@@ -158,21 +161,22 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     address: e.target.value,
                   })
                 }
+                fontSize={{ base: "sm", md: "md" }}
               />
             </FormControl>
           </SimpleGrid>
         </VStack>
         
         {/* Company Information Section */}
-        <VStack spacing={4} align="stretch">
-          <Heading size="md">Company Information</Heading>
-          <Text fontSize="sm" color="gray.500">
+        <VStack spacing={{ base: 2, md: 4 }} align="stretch">
+          <Heading size={{ base: "sm", md: "md" }}>Company Information</Heading>
+          <Text fontSize={{ base: "xs", md: "sm" }} color="gray.500">
             Add details about the company you're applying to.
           </Text>
           
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
+          <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={{ base: 3, md: 4 }}>
             <FormControl isRequired isInvalid={!!errors.companyName}>
-              <FormLabel>Company Name</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Company Name</FormLabel>
               <Input
                 placeholder="Acme Corporation"
                 value={companyInfo.companyName}
@@ -189,6 +193,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     }));
                   }
                 }}
+                fontSize={{ base: "sm", md: "md" }}
               />
               {errors.companyName && (
                 <FormErrorMessage>{errors.companyName}</FormErrorMessage>
@@ -196,7 +201,7 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
             </FormControl>
             
             <FormControl>
-              <FormLabel>Hiring Manager</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Hiring Manager</FormLabel>
               <Input
                 placeholder="Jane Smith"
                 value={companyInfo.hiringManager}
@@ -206,11 +211,12 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     hiringManager: e.target.value,
                   })
                 }
+                fontSize={{ base: "sm", md: "md" }}
               />
             </FormControl>
             
             <FormControl gridColumn={{ md: 'span 2' }}>
-              <FormLabel>Company Address</FormLabel>
+              <FormLabel fontSize={{ base: "sm", md: "md" }}>Company Address</FormLabel>
               <Input
                 placeholder="456 Business Ave, City, State, ZIP"
                 value={companyInfo.companyAddress}
@@ -220,18 +226,22 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
                     companyAddress: e.target.value,
                   })
                 }
+                fontSize={{ base: "sm", md: "md" }}
               />
             </FormControl>
           </SimpleGrid>
         </VStack>
         
         {/* Form Navigation Buttons */}
-        <SimpleGrid columns={2} spacing={4}>
+        <SimpleGrid columns={{ base: 1, sm: 2 }} spacing={4}>
           <Button
             variant="outline"
             colorScheme="brand"
             onClick={onBack}
             isDisabled={isLoading}
+            width="100%"
+            mb={{ base: 2, sm: 0 }}
+            gridColumn={{ base: "span 1", sm: "auto" }}
           >
             Back
           </Button>
@@ -241,6 +251,8 @@ const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
             colorScheme="brand"
             isLoading={isLoading}
             loadingText="Generating..."
+            width="100%"
+            gridColumn={{ base: "span 1", sm: "auto" }}
           >
             Generate Cover Letter
           </Button>

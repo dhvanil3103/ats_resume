@@ -64,7 +64,7 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      p={6}
+      p={{ base: 4, md: 6 }}
       bg={bgColor}
       borderRadius="lg"
       border="1px"
@@ -82,10 +82,10 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
         bg: accentColor,
       }}
     >
-      <VStack spacing={6} align="stretch">
+      <VStack spacing={{ base: 4, md: 6 }} align="stretch">
         <Flex align="center">
-          <Icon as={FiPercent} boxSize={6} color={accentColor} />
-          <Heading size="md" ml={2}>
+          <Icon as={FiPercent} boxSize={{ base: 5, md: 6 }} color={accentColor} />
+          <Heading size={{ base: "sm", md: "md" }} ml={2}>
             Match Analysis
           </Heading>
         </Flex>
@@ -100,25 +100,29 @@ const SimilarityScore: React.FC<SimilarityScoreProps> = ({
             </VStack>
           </VStack>
         ) : data ? (
-          <HStack spacing={6} align="flex-start">
-            <Box position="relative" w="150px" h="150px">
+          <Flex 
+            direction={{ base: "column", sm: "row" }}
+            align={{ base: "center", sm: "flex-start" }}
+            gap={{ base: 4, md: 6 }}
+          >
+            <Box position="relative" w={{ base: "120px", md: "150px" }} h={{ base: "120px", md: "150px" }} mx={{ base: "auto", sm: 0 }}>
               <CircularProgress
                 value={scoreValue}
                 color={scoreColor}
-                size="150px"
+                size={{ base: "120px", md: "150px" }}
                 thickness="10px"
               >
-                <CircularProgressLabel fontSize="2xl" fontWeight="bold">
+                <CircularProgressLabel fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold">
                   {data.similarityScore}
                 </CircularProgressLabel>
               </CircularProgress>
             </Box>
             
-            <VStack align="start" spacing={3} flex="1">
-              <Heading size="sm">Resume-Job Match</Heading>
-              <Text>{data.similarityExplanation}</Text>
+            <VStack align={{ base: "center", sm: "start" }} spacing={3} flex="1" pt={{ base: 2, sm: 0 }}>
+              <Heading size="sm" textAlign={{ base: "center", sm: "left" }}>Resume-Job Match</Heading>
+              <Text textAlign={{ base: "center", sm: "left" }}>{data.similarityExplanation}</Text>
             </VStack>
-          </HStack>
+          </Flex>
         ) : (
           <Text>No similarity data available</Text>
         )}

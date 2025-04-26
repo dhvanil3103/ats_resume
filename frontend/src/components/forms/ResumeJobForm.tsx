@@ -94,7 +94,7 @@ const ResumeJobForm: React.FC<ResumeJobFormProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      p={6}
+      p={{ base: 4, md: 6 }}
       bg={bgColor}
       borderRadius="lg"
       border="1px"
@@ -102,8 +102,8 @@ const ResumeJobForm: React.FC<ResumeJobFormProps> = ({
       boxShadow="md"
       width="100%"
     >
-      <VStack spacing={6} align="stretch">
-        <Heading size="md">Job & Resume Information</Heading>
+      <VStack spacing={{ base: 4, md: 6 }} align="stretch">
+        <Heading size={{ base: "sm", md: "md" }}>Job & Resume Information</Heading>
         
         {/* Job Description */}
         <FormControl isRequired isInvalid={!!errors.jobDescription}>
@@ -124,7 +124,8 @@ const ResumeJobForm: React.FC<ResumeJobFormProps> = ({
                 }));
               }
             }}
-            minHeight="200px"
+            minHeight={{ base: "150px", md: "200px" }}
+            fontSize={{ base: "sm", md: "md" }}
           />
           {errors.jobDescription && (
             <FormErrorMessage>{errors.jobDescription}</FormErrorMessage>
@@ -135,7 +136,7 @@ const ResumeJobForm: React.FC<ResumeJobFormProps> = ({
         <FormControl isRequired isInvalid={!!errors.resume}>
           <FormLabel>Your Resume</FormLabel>
           
-          <Tabs variant="enclosed" colorScheme="brand">
+          <Tabs variant="enclosed" colorScheme="brand" size={{ base: "sm", md: "md" }}>
             <TabList>
               <Tab>Upload Resume</Tab>
               <Tab>Paste Resume</Tab>
@@ -180,7 +181,8 @@ const ResumeJobForm: React.FC<ResumeJobFormProps> = ({
                       }));
                     }
                   }}
-                  minHeight="200px"
+                  minHeight={{ base: "150px", md: "200px" }}
+                  fontSize={{ base: "sm", md: "md" }}
                 />
               </TabPanel>
             </TabPanels>
@@ -191,16 +193,17 @@ const ResumeJobForm: React.FC<ResumeJobFormProps> = ({
           )}
         </FormControl>
         
-        <Text fontSize="sm" color="gray.500">
-          Your data is processed securely and not stored beyond this session unless you create an account.
+        <Text fontSize="xs" color="gray.500">
+          Your data is processed securely and not stored beyond this session.
         </Text>
         
         <Button
           type="submit"
           colorScheme="brand"
-          size="lg"
+          size={{ base: "md", md: "lg" }}
           isLoading={isLoading}
           loadingText="Analyzing..."
+          width="100%"
         >
           Continue
         </Button>
